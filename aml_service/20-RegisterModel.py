@@ -12,7 +12,7 @@ cli_auth = AzureCliAuthentication()
 # Get workspace
 ws = Workspace.from_config(auth=cli_auth)
 
-
+"""
 # Get the latest evaluation result
 try:
     with open("aml_config/run_id.json") as f:
@@ -66,3 +66,4 @@ model_json["model_version"] = model.version
 model_json["run_id"] = run_id
 with open("aml_config/model.json", "w") as outfile:
     json.dump(model_json, outfile)
+"""
