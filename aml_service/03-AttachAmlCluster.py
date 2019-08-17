@@ -5,11 +5,14 @@ from azureml.core.authentication import AzureCliAuthentication
 import os, json
 
 cli_auth = AzureCliAuthentication()
+
 # Get workspace
-ws = Workspace.from_config(auth=cli_auth)
+#ws = Workspace.from_config(auth=cli_auth)
+ws = Workspace.from_config('aml_config')
+
 
 # Read the New VM Config
-with open("aml_config/security_config.json") as f:
+with open("aml_config/config.json") as f:
     config = json.load(f)
 
 aml_cluster_name = config["aml_cluster_name"]
@@ -38,3 +41,5 @@ except ComputeTargetException:
     cpu_cluster = ComputeTarget.create(ws, aml_cluster_name, compute_config)
 
 cpu_cluster.wait_for_completion(show_output=True)
+
+print("----- AML COMPUTE CLUSTER ATTACHED ----- \n")
